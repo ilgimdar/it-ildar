@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="content">
-    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <a href="{% url 'post_new' %}" class="top-menu"><button type="submit" class="save btn btn-primary">Новый пост</button></a>
     {% for post in posts %}
     <div>
         <p>published: {{ post.published_date }}</p>

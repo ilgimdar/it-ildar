@@ -2,10 +2,15 @@
 {% load static %}
 
 {% block content %}
-<h1>New post</h1>
+<div class="content">
+    <h1>Новый пост</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <p><label for="post_title">Название поста:</label>
+            <input id="post_title" type="text" name="title" maxlength="100" required></p>
+        <p><label for="post_message">Текст поста:</label>
+            <textarea name="text" id="post_message" required></textarea></p>
+        <button type="submit" class="save btn btn-success">Опубликовать</button>
     </form>
+</div>
 {% endblock %}
 

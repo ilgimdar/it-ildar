@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <title>Ильдар Гимадеев</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div id="wrapper">
+    <script src="{% static 'js/code1.js' %}"></script>
+    <div id="header">
+        <div class="first">
+            <h1>Ильдар Гимадеев 😀</h1>
+            <h2>18 лет, Python backend разработчик 😎</h2>
+        </div>
+        <div class="m-img">
+            <img src="{% static 'images/one.jpg' %}">
+        </div>
+        <div class="second">
+            <p class="nomer">teleboting@yandex.ru</p>
+            <p class="nomer">@ildargimadeev </p>
+        </div>
+    </div>
+    <div id="sidebar">
+        <h3>На моем сайте</h3>
+        <a href="/#history">Моя история</a><br>
+        <a href="/#projects">Мои проекты</a><br>
+        <a href="/#links">Ссылки</a><br>
+        <a href="/articles">Блог</a>
+        <hr width="50" color="#037FFC" size="5">
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div id="footer">
+        <p class="fon"><strong>ВК:<br> @ildargimadeev</strong></p>
+        <p class="fax"><strong>Telegram:<br> @ildargimadeev</strong></p>
+        <p class="mail"><strong>E-mail<br>teleboting@yandex.ru</strong></p>
+        <p class="mail"><strong>GitHub<br>@ilgimdar</strong></p>
+    </div>
+</div>
+</body>
+</html>
+

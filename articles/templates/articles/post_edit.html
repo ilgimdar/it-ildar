@@ -9,7 +9,9 @@
             <input id="post_title" type="text" name="title" maxlength="100" required></p>
         <p><label for="post_message">Текст поста:</label>
             <textarea name="text" id="post_message" required></textarea></p>
+        {% if user.is_authenticated %}
         <button type="submit" class="save btn btn-success">Опубликовать</button>
+        {% endif %}
     </form>
 </div>
 {% endblock %}

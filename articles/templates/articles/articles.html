@@ -3,20 +3,25 @@
 {% block content %}
 
 <div class="content">
-    {% if user.is_authenticated %}
-    <div class="text-center">
-        <a href="{% url 'post_new' %}" class="top-menu">
-            <button type="submit" class="save btn-lg btn-primary">Новый пост</button>
-        </a><br><br>
+    <div class="articles-name">
+        <h1>Лента постов</h1>
+        {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'post_new' %}" class="top-menu">
+                <button type="submit" class="save btn-lg btn-primary">Новый пост</button>
+            </a><br><br>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
     {% for post in posts %}
     <div class="post">
-        <img src="" alt="">
-        <div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <p>{{ post.published_date }}</p>
+        <div class="post-card">
+            <img src="" alt="">
+            <div class="post-card-inside">
+                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <p>{{ post.published_date }}</p>
+            </div>
         </div>
     </div>
     {% endfor %}

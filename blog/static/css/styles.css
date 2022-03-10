@@ -232,3 +232,48 @@ text-align: center;
     height: px;
 }
 
+
+.new-post{
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.new-post form{
+    text-align: left;
+}
+
+.full-input {
+  display: inline-block;
+  padding: 3px;
+  border: 2px solid blue;
+}
+
+.full-input input{
+  width: 80ch;
+  outline: none;
+  border: none;
+  display:block;
+  line-height: 1.2em;
+  font-size: 14pt;
+}
+
+.full-input textarea{
+     resize: none;
+   width: 80ch;
+   height: 10ch;
+  outline: none;
+  border: none;
+  display:block;
+  line-height: 1.2em;
+  font-size: 14pt;
+}
+.full-input label {
+  display: block;
+  font-size: 12px;
+  color: blue;
+}

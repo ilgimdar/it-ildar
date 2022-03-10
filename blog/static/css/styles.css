@@ -22,6 +22,7 @@ h2{
 	color: black;
 }
 
+
 p{
 	color: black;
 }
@@ -48,16 +49,24 @@ a{
 	color: white;
 }
 
+#header h3{
+	color: white;
+}
+
+.header-part{
+    width: 100%;
+}
 .first{
-	margin-right:auto;
 	margin-left: 20px;
 	margin-top: auto;
 	margin-bottom: auto;
 }
 
 .second{
-	  margin-left: auto;
 	  margin-right: 20px;
+	  margin-top:auto;
+	  margin-bottom: auto;
+
 }
 .nomer{
   font-size: 25px;
@@ -67,18 +76,14 @@ a{
 }
 
 .m-img{
-	 top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    width:300px; /* Assign a value */
-    height:500px; /* Assign a value */
-    margin:auto;
+text-align: center;
 }
 
+
+
 .m-img img{
-		height: 150px;
-		border-radius: 200px;
+    	height: 150px;
+    	border-radius: 200px;
 }
 
 .about{
@@ -124,6 +129,8 @@ a{
 	margin-right:auto;
 	margin-left:auto;
 }
+
+
 
 .card img{
 	width: 200px;
@@ -203,3 +210,18 @@ a{
   float:left;
  margin:20px 0 0 60px;
 }
+
+
+.post{
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    width: 70%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    height: px;
+}
+

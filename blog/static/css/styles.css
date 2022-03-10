@@ -34,7 +34,7 @@ a{
 
 
 #header{
-  height: 150px;
+  height: 120px;
   background-color: #000000; 
    margin-bottom: 5px; 
   box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
@@ -83,8 +83,8 @@ text-align: center;
 
 
 .m-img img{
-    	height: 150px;
-    	border-radius: 200px;
+    height: 120px;
+    border-radius: 200px;
 }
 
 .about{
@@ -289,6 +289,7 @@ text-align: center;
 .articles-name h1{
     margin: 10px;
 }
+
 
 .post-card{
 	background-color: white;

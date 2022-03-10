@@ -251,7 +251,7 @@ text-align: center;
 .full-input {
   display: inline-block;
   padding: 3px;
-  border: 2px solid blue;
+  border: 2px solid grey;
 }
 
 .full-input input{
@@ -276,7 +276,7 @@ text-align: center;
 .full-input label {
   display: block;
   font-size: 12px;
-  color: blue;
+  color: black;
 }
 
 .articles-name{

@@ -40,6 +40,6 @@ def post_edit(request, pk):
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm(instance=post)
-    return render(request, 'articles/post_edit.html', {'form': form})
+    title = Post.objects.get(pk=pk).title
+    text = Post.objects.get(pk=pk).text
+    return render(request, 'articles/post_edit.html', {'title': title, 'text': text})

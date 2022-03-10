@@ -66,6 +66,7 @@ a{
 	  margin-right: 20px;
 	  margin-top:auto;
 	  margin-bottom: auto;
+	  text-align: right;
 
 }
 .nomer{
@@ -120,7 +121,7 @@ text-align: center;
 }
 .card{
 	background-color: white;
-	height: 200px;
+	height: 150px;
 	margin-bottom: 10px;
 	margin-top: 10px;
 	border-radius: 20px;
@@ -133,8 +134,8 @@ text-align: center;
 
 
 .card img{
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	margin-top: auto;
 	margin-bottom: auto;
 	float: left;
@@ -143,12 +144,18 @@ text-align: center;
 
 .card p{
 	color: black;
-	margin-left: 10px;
+	padding-left: 50px;
+	border-left: 1px solid grey;
+
 	float: left;
-	font-size: 20px;	
+	font-size: 15px;
 	width: 70%;
 	margin-top: auto;
 	margin-bottom: auto;
+	margin-right: auto;
+	margin-left: auto;
+
+
 }
 
 #sidebar{

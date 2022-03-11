@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <div class="new-post">
+        <h1>Новый пост</h1>
+        <form method="POST" class="post-form">{% csrf_token %}
+            <div class="full-input"><label for="post_title">Название поста:</label>
+                <input id="post_title" type="text" name="title" maxlength="100" required></div>
+            <br><br>
+            <div class="full-input"><label for="post_message">Текст поста:</label>
+                <textarea name="text" id="post_message" required></textarea>
+            </div>
+            <br><br>
+            {% if user.is_authenticated %}
+            <button type="submit" class="save btn btn-success">Опубликовать</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+

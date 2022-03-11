@@ -27,7 +27,7 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'articles/post_edit.html', {'form': form})
+    return render(request, 'articles/post_new.html', {'form': form})
 
 
 def post_edit(request, pk):

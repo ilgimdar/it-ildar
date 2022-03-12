@@ -14,12 +14,9 @@
             </div>
             <br><br>
             Категория поста:
-            <select class="selectpicker" name="post_category">
+            <select class="selectpicker" name="cat" required>
                 {% for c in cats %}
                 <option>{{ c.name }}</option>
-                    {% if forloop.last %}
-                        <option>Другое</option>
-                    {% endif %}
                 {% endfor %}
             </select>
             <br><br>

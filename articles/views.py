@@ -22,12 +22,18 @@ def post_detail(request, pk):
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
+
         if form.is_valid():
+            selected_category = request.POST['cat']
+            cat = Category.objects.get(name=selected_category)
             post = form.save(commit=False)
+            post.cat = cat
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
+        else:
+            print("NOT VALID")
     else:
         form = PostForm()
     cats = Category.objects.all()

@@ -1,14 +1,16 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import Post
 from django.utils import timezone
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
-
+from blog.models import Category
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'articles/articles.html', {'posts': posts})
+    cats = Category.objects.all()
+    return render(request, 'articles/articles.html', {'posts': posts, 'cats': cats})
 
 
 def post_detail(request, pk):
@@ -43,3 +45,7 @@ def post_edit(request, pk):
     title = Post.objects.get(pk=pk).title
     text = Post.objects.get(pk=pk).text
     return render(request, 'articles/post_edit.html', {'title': title, 'text': text})
+
+
+def show_category(request, pk):
+    return HttpResponse('ЛОООЛ')

@@ -9,6 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -18,3 +19,8 @@ class Post(models.Model):
         return self.title
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50, db_index=True)
+
+    def __str(self):
+        return self.name

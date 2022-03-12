@@ -30,7 +30,8 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'articles/post_new.html', {'form': form})
+    cats = Category.objects.all()
+    return render(request, 'articles/post_new.html', {'form': form, 'cats': cats})
 
 
 def post_edit(request, pk):

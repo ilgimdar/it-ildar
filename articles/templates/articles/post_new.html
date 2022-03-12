@@ -13,6 +13,17 @@
                 <textarea name="text" id="post_message" required></textarea>
             </div>
             <br><br>
+            Категория поста:
+            <select class="selectpicker" name="post_category">
+                {% for c in cats %}
+                <option>{{ c.name }}</option>
+                    {% if forloop.last %}
+                        <option>Другое</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br><br>
+
             {% if user.is_authenticated %}
             <button type="submit" class="save btn btn-success">Опубликовать</button>
             {% endif %}

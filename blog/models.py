@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -24,3 +25,6 @@ class Category(models.Model):
 
     def __str(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_id': self.pk})

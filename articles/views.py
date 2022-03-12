@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from blog.models import Category
 
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     cats = Category.objects.all()
@@ -47,8 +48,8 @@ def post_edit(request, pk):
     return render(request, 'articles/post_edit.html', {'title': title, 'text': text})
 
 
-def show_category(request, pk):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=pk).order_by('published_date')
+def show_category(request, cat_id):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('published_date')
     cats = Category.objects.all()
 
-    return render(request, 'articles/articles.html', {'posts': posts, 'cats': cats})
+    return render(request, 'articles/article_category.html', {'posts': posts, 'cats': cats, 'cat_id': cat_id})

@@ -7,7 +7,7 @@
       <ul>
         <li class="active"><a href="">Все категории</a></li>
           {% for c in cats %}
-        <li><a href="articles/category/{{ c.pk }}/">{{ c.name }}</a></li>
+        <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
           {% endfor %}
       </ul>
     </nav>

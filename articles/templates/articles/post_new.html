@@ -5,7 +5,8 @@
 <div class="content">
     <div class="new-post">
         <h1>Новый пост</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="full-input"><label for="post_title">Название поста:</label>
                 <input id="post_title" type="text" name="title" maxlength="100" required></div>
             <br><br>
@@ -13,6 +14,11 @@
                 <textarea name="text" id="post_message" required></textarea>
             </div>
             <br><br>
+            <div>
+                <p>
+                    <input type="file" id="post_image" name="post_image">
+                </p>
+            </div>
             Категория поста:
             <select class="selectpicker" name="cat" required>
                 {% for c in cats %}

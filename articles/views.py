@@ -1,3 +1,4 @@
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import Post
@@ -28,6 +29,7 @@ def post_new(request):
             cat = Category.objects.get(name=selected_category)
             post = form.save(commit=False)
             post.cat = cat
+            post.photo = request.FILES['post_image']
             post.author = request.user
             post.published_date = timezone.now()
             post.save()

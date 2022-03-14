@@ -183,6 +183,12 @@ text-align: center;
   padding: 10px;
   border-radius: 5px;
 }
+
+
+#wrapper:last-child{
+      margin-bottom: 100px;
+}
+
 .left{ 
   float: left;
   margin: 30px 7px 7px 7px;

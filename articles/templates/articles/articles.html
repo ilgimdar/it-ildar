@@ -26,15 +26,14 @@
     </div>
     {% for post in posts %}
     <div class="post post-card">
-        {% if post.photo %}
-        <img src="{{ post.photo.url }}">
+        {% if post.photo and post.photo.url %}
+            <img src="{{ post.photo.url }}">
         {% else %}
-        <img src="{% static 'images/default.png' %}" alt="" class="post_img">
+            <img src="{% static 'images/default.png' %}" alt="" class="post_img">
         {% endif %}
-
         <div class="post-card-inside">
-            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr|truncatewords:50}}</p>
+            <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <p>{{ post.text|linebreaksbr|truncatewords:30}}</p>
             <p>{{ post.published_date }}</p>
         </div>
     </div>

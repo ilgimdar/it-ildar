@@ -62,5 +62,4 @@ def post_edit(request, pk):
 def show_category(request, cat_id):
     posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('published_date')
     cats = Category.objects.all()
-
     return render(request, 'articles/article_category.html', {'posts': posts, 'cats': cats, 'cat_id': cat_id})

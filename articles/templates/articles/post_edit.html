@@ -20,12 +20,12 @@
                     <input type="file" id="post_image" name="post_image">
                 </p>
             </div>
+            <p>Картинка:</p>
             {% if photo %}
-            <p><img class="post_img" src="{{ photo.url }}"></p>
+                <p><img class="post_img" src="{{ photo.url }}"></p>
             {% else %}
-             <p><img class="post_img" src=""></p>
+                <p><img class="post_img" src=""></p>
             {% endif %}
-            <br><br>
             {% if user.is_authenticated %}
             <button type="submit" class="save btn btn-success">Опубликовать</button>
             {% endif %}

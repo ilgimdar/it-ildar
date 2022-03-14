@@ -2,16 +2,16 @@
 {% load static %}
 {% block content %}
 
-   <aside class="sidebar1">
+<aside class="sidebar1">
     <nav class="nav">
-      <ul>
-        <li class="active"><a href="{% url 'post_list' %}">Все категории</a></li>
-          {% for c in cats %}
-        <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
-          {% endfor %}
-      </ul>
+        <ul>
+            <li class="active"><a href="{% url 'post_list' %}">Все категории</a></li>
+            {% for c in cats %}
+            <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+            {% endfor %}
+        </ul>
     </nav>
-  </aside>
+</aside>
 <div class="content twitter">
 
     <div class="articles-name">
@@ -25,14 +25,18 @@
         {% endif %}
     </div>
     {% for post in posts %}
-        <div class="post post-card">
-            <img src="" alt="">
-            <div class="post-card-inside">
-                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr|truncatewords:50}}</p>
-                <p>{{ post.published_date }}</p>
-            </div>
+    <div class="post post-card">
+        {% if post.photo and post.photo.url %}
+            <img src="{{ post.photo.url }}">
+        {% else %}
+            <img src="{% static 'images/default.png' %}" alt="" class="post_img">
+        {% endif %}
+        <div class="post-card-inside">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr|truncatewords:50}}</p>
+            <p>{{ post.published_date }}</p>
         </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

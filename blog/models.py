@@ -5,12 +5,18 @@ from django.utils import timezone
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор статьи')
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    text = models.TextField(verbose_name='Текст статьи')
     created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+    published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публикации')
+    photo = models.ImageField(null=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
+        ordering = ['id']
 
     def publish(self):
         self.published_date = timezone.now()
@@ -24,7 +30,11 @@ class Post(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=50, db_index=True, verbose_name='Категория')
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
     def __str(self):
         return self.name

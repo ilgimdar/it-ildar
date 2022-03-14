@@ -10,10 +10,13 @@
             </div>
             {% endif %}
             {% if user.is_authenticated %}
-            Редактировать:  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span
-                    class="glyphicon glyphicon-pencil"></span></a>
+            Редактировать: <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span
+                class="glyphicon glyphicon-pencil"></span></a>
             {% endif %}
             <h1>{{ post.title }}</h1>
+            {% if post.photo %}
+            <p><img class="post_img" src="{{ post.photo.url }}"></p>
+            {% endif %}
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     </div>

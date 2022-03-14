@@ -54,7 +54,9 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     title = Post.objects.get(pk=pk).title
     text = Post.objects.get(pk=pk).text
-    return render(request, 'articles/post_edit.html', {'title': title, 'text': text})
+    photo = Post.objects.get(pk=pk).photo
+    print(photo)
+    return render(request, 'articles/post_edit.html', {'title': title, 'text': text, 'photo': photo})
 
 
 def show_category(request, cat_id):

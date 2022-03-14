@@ -5,13 +5,26 @@
 <div class="content">
     <div class="new-post">
         <h1>Редактирование поста</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="full-input"><label for="post_title">Название поста:</label>
                 <input id="post_title" type="text" name="title" maxlength="100" value="{{ title }}" required></div>
             <br><br>
+
             <div class="full-input"><label for="post_message">Текст поста:</label>
                 <textarea name="text" id="post_message" required>{{ text }}</textarea>
             </div>
+            <br><br>
+            <div>
+                <p>
+                    <input type="file" id="post_image" name="post_image">
+                </p>
+            </div>
+            {% if photo %}
+            <p><img class="post_img" src="{{ photo.url }}"></p>
+            {% else %}
+             <p><img class="post_img" src=""></p>
+            {% endif %}
             <br><br>
             {% if user.is_authenticated %}
             <button type="submit" class="save btn btn-success">Опубликовать</button>

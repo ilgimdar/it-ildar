@@ -50,16 +50,23 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.photo = request.FILES['post_image']
+            selected_category = request.POST['cat']
+            cat = Category.objects.get(name=selected_category)
+            post.cat = cat
+            if request.FILES and request.FILES['post_image'] is not None:
+                post.photo = request.FILES['post_image']
             post.save()
             return redirect('post_detail', pk=post.pk)
-    title = Post.objects.get(pk=pk).title
-    text = Post.objects.get(pk=pk).text
-    photo = Post.objects.get(pk=pk).photo
+    post_obj = Post.objects.get(pk=pk)
+    title = post_obj.title
+    text = post_obj.text
+    photo = post_obj.photo
+    cat = post_obj.cat
     context = {
         'title': title,
         'text': text,
         'photo': photo,
+        'cat': cat
     }
     return render(request, 'articles/post_edit.html', context=context)
 

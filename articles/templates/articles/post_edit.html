@@ -21,14 +21,26 @@
                     <input type="file" id="post_image" name="post_image">
                 </p>
             </div>
+            Категория поста:
+            <select class="selectpicker" name="cat" required>
+                {% getcats as cats %}
+                {% for c in cats %}
+                    {% if c.id == cat.id %}
+                        <option selected>{{ c.name }}</option>
+                    {% else %}
+                         <option>{{ c.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br><br>
             <p>Картинка:</p>
             {% if photo %}
-                <p><img class="post_img" src="{{ photo.url }}"></p>
+            <p><img class="post_img" src="{{ photo.url }}"></p>
             {% else %}
-                <p><img class="post_img" src="{% static 'images/default.png' %}"></p>
+            <p><img class="post_img" src="{% static 'images/default.png' %}"></p>
             {% endif %}
             {% if user.is_authenticated %}
-            <button type="submit" class="save btn btn-success">Опубликовать</button>
+            <button type="submit" class="save btn btn-success">Опубликовать изменения</button>
             {% endif %}
         </form>
     </div>

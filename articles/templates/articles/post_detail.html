@@ -15,7 +15,7 @@
             Удалить: <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span
                 class="glyphicon glyphicon-trash"></span></a>
             {% endif %}
-            <h1>{{ post.title }}</h1>
+            <h1 class="post-name">{{ post.title }}</h1>
             {% if post.photo %}
             <p><img class="post_img" src="{{ post.photo.url }}"></p>
             {% endif %}

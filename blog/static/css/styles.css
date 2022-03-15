@@ -2,17 +2,17 @@ html {
   scroll-behavior: smooth;
 }
 body{
-  background: #ffffff;
+  background: #2081e8;
   font-family: 'Nunito Sans', sans-serif;
 }
 
 #wrapper{ 
   width: 100%;
-  background: #ffffff;
+  background: #2081e8;
 }
 
 h1{
-	color: black;
+	color: white;
 }
 h3{
 	color: black;
@@ -89,7 +89,7 @@ text-align: center;
 .about{
 	margin-left: 10px;
 	float: left;
-	background-color:#4185f2;
+	background-color:#002fb0;
 	border-radius: 10px;
 	font-size: 35px;	
 	margin-top: auto;
@@ -100,7 +100,7 @@ text-align: center;
 .about1{
 	margin-left: 10px;
 	float: left;
-	background-color:#4185f2;
+	background-color:#002fb0;
 	border-radius: 10px;
 	font-size: 35px;	
 	margin-top: auto;
@@ -111,7 +111,7 @@ text-align: center;
 .about2{
 	margin-left: 10px;
 	float: left;
-	background-color:#4185f2;
+	background-color:#002fb0;
 	border-radius: 10px;
 	font-size: 35px;	
 	margin-top: auto;
@@ -160,7 +160,6 @@ text-align: center;
 
 #sidebar{
   position: fixed;
-  background-color: white; 
   width: 180px;
   height: 300px;
   padding: 10px;
@@ -190,13 +189,17 @@ text-align: center;
 
 .content{
   height:100%;
-  background-color: rgb(255, 255, 255);
+  background-color:#2081e8;
   margin-bottom: 5px; 
   margin-left:auto;
   margin-right: auto;
   width: 80%;
   padding: 10px;
   border-radius: 5px;
+}
+
+.post-name{
+    color: black;
 }
 
 
@@ -309,6 +312,8 @@ text-align: center;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    border-bottom: solid 2px white;
+    width: 50%;
 }
 
 .articles-name h1{
@@ -351,7 +356,7 @@ text-align: center;
   position: absolute;
   width: 15%;
   height: 100vh;
-  background: #ffffff;
+  background: #2081e8;
   font-size: 0.65em;
   margin-left: 100px;
 }
@@ -373,14 +378,14 @@ text-align: center;
 .nav a {
       text-decoration: none;
 
-      color: rgba(#FFF, 0.35);
+      color: white;
       display: block;
       transition: all ease-out 300ms;
 }
 
 
 .active{
-    border-bottom: solid 2px grey;
+    border-bottom: solid 2px white;
     font-size: 22px;
 }
 
@@ -397,5 +402,6 @@ text-align: center;
     height: 200px;
     border-radius: 20px;
 }
+
 
 

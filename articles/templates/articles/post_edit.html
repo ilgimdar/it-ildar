@@ -4,7 +4,7 @@
 {% block content %}
 <div class="content">
     <div class="new-post">
-        <h1>Редактирование поста</h1>
+        <h1 class="post-name">Редактирование поста</h1>
         <form method="POST" class="post-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="full-input"><label for="post_title">Название поста:</label>
@@ -24,7 +24,7 @@
             {% if photo %}
                 <p><img class="post_img" src="{{ photo.url }}"></p>
             {% else %}
-                <p><img class="post_img" src=""></p>
+                <p><img class="post_img" src="{% static 'images/default.png' %}"></p>
             {% endif %}
             {% if user.is_authenticated %}
             <button type="submit" class="save btn btn-success">Опубликовать</button>

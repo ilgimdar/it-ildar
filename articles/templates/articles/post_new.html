@@ -4,7 +4,7 @@
 {% block content %}
 <div class="content">
     <div class="new-post">
-        <h1>Новый пост</h1>
+        <h1 class="post-name">Новый пост</h1>
         <form method="POST" class="post-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="full-input"><label for="post_title">Название поста:</label>

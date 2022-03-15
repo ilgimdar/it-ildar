@@ -10,12 +10,15 @@ from blog.models import Category
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    cats = Category.objects.all()
-    return render(request, 'articles/articles.html', {'posts': posts, 'cats': cats})
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, 'articles/articles.html', {'posts': posts})
 
 
 def post_detail(request, pk):
+    if request.method == "POST":
+        if request.POST['post_delete'] is not None:
+            return redirect('post_delete', pk=pk)
+
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'articles/post_detail.html', {'post': post})
 
@@ -23,7 +26,6 @@ def post_detail(request, pk):
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
-
         if form.is_valid():
             selected_category = request.POST['cat']
             cat = Category.objects.get(name=selected_category)
@@ -38,8 +40,7 @@ def post_new(request):
             print("NOT VALID")
     else:
         form = PostForm()
-    cats = Category.objects.all()
-    return render(request, 'articles/post_new.html', {'form': form, 'cats': cats})
+    return render(request, 'articles/post_new.html', {'form': form})
 
 
 def post_edit(request, pk):
@@ -55,14 +56,17 @@ def post_edit(request, pk):
     title = Post.objects.get(pk=pk).title
     text = Post.objects.get(pk=pk).text
     photo = Post.objects.get(pk=pk).photo
-    print(photo)
-    return render(request, 'articles/post_edit.html', {'title': title, 'text': text, 'photo': photo})
+    context = {
+        'title': title,
+        'text': text,
+        'photo': photo,
+    }
+    return render(request, 'articles/post_edit.html', context=context)
 
 
 def show_category(request, cat_id):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('published_date')
-    cats = Category.objects.all()
-    return render(request, 'articles/article_category.html', {'posts': posts, 'cats': cats, 'cat_id': cat_id})
+    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('-published_date')
+    return render(request, 'articles/article_category.html', {'posts': posts, 'cat_id': cat_id})
 
 
 def post_delete(request, pk):

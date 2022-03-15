@@ -12,8 +12,10 @@
             {% if user.is_authenticated %}
             Редактировать: <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span
                 class="glyphicon glyphicon-pencil"></span></a><br>
-            Удалить: <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span
-                class="glyphicon glyphicon-trash"></span></a>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <button type="submit" class="save btn btn-danger" name="post_delete">Удалить</button>
+            </form>
             {% endif %}
             <h1 class="post-name">{{ post.title }}</h1>
             {% if post.photo %}

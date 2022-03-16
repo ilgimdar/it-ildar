@@ -3,7 +3,10 @@ html {
 }
 body{
   font-family: 'Nunito Sans', sans-serif;
-  background-color: #2081e8;
+  background: url('/../static/images/blue_back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 img{
     pointer-events: none;

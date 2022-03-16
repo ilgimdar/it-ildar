@@ -33,6 +33,8 @@ def post_new(request):
             post.cat = cat
             if request.FILES and request.FILES['post_image'] is not None:
                 post.photo = request.FILES['post_image']
+            else:
+                post.photo = 'default.png'
             post.author = request.user
             post.published_date = timezone.now()
             post.save()

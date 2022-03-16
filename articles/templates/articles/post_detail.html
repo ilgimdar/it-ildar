@@ -19,7 +19,9 @@
             {% endif %}
             <h1 class="post-name">{{ post.title }}</h1>
             {% if post.photo %}
-            <p><img class="post_img" src="{{ post.photo.url }}"></p>
+                <p><img class="post_img" src="{{ post.photo.url }}"></p>
+            {% else %}
+                <p><img class="post_img" src="{% static 'images/default.png'%}"></p>
             {% endif %}
             <p>{{ post.text|linebreaksbr }}</p>
         </div>

@@ -31,7 +31,8 @@ def post_new(request):
             cat = Category.objects.get(name=selected_category)
             post = form.save(commit=False)
             post.cat = cat
-            post.photo = request.FILES['post_image']
+            if request.FILES and request.FILES['post_image'] is not None:
+                post.photo = request.FILES['post_image']
             post.author = request.user
             post.published_date = timezone.now()
             post.save()

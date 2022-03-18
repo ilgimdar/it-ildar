@@ -198,7 +198,6 @@ text-align: center;
 
 
 .content{
-  height:100%;
   margin-bottom: 5px;
   margin-left:auto;
   margin-right: auto;
@@ -212,8 +211,8 @@ text-align: center;
 }
 
 
-#wrapper:last-child{
-      margin-bottom: 100px;
+.wrapper:last-child{
+      margin-bottom: 120px;
 }
 
 .left{
@@ -421,8 +420,11 @@ text-align: center;
 
 
 .active{
-    border-bottom: solid 2px white;
     font-size: 22px;
+}
+
+.current-cat{
+    border-bottom: solid 2px red;
 }
 
 

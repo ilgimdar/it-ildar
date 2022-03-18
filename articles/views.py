@@ -1,6 +1,9 @@
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import ListView
+
 from blog.models import Post
 from django.utils import timezone
 from .forms import PostForm
@@ -9,9 +12,24 @@ from django.shortcuts import render, get_object_or_404
 from blog.models import Category
 
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'articles/articles.html', {'posts': posts})
+class PostList(ListView):
+    model = Post
+    template_name = 'articles/articles.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cat_selected'] = 0
+        return context
+
+
+class PostCat(View):
+    model = Post
+    template_name = 'articles/article_category.html'
+
+    def get(self, request, cat_id):
+        posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('-published_date')
+        return render(request, self.template_name, {'cat_selected': cat_id, 'posts': posts})
 
 
 def post_detail(request, pk):
@@ -72,11 +90,6 @@ def post_edit(request, pk):
         'cat': cat
     }
     return render(request, 'articles/post_edit.html', context=context)
-
-
-def show_category(request, cat_id):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('-published_date')
-    return render(request, 'articles/article_category.html', {'posts': posts, 'cat_id': cat_id})
 
 
 def post_delete(request, pk):

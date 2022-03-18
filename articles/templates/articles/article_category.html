@@ -9,7 +9,11 @@
             <li class="active"><a href="{% url 'post_list' %}">Все категории</a></li>
             {% getcats as cats %}
             {% for c in cats %}
-            <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                {% if c.id == cat_selected %}
+                    <li class="current-cat"><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                {% else %}
+                    <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                {% endif %}
             {% endfor %}
         </ul>
     </nav>

@@ -40,5 +40,14 @@
             </div>
     </div>
     {% endfor %}
+    <nav class="list-pages">
+        <ul>
+            {% for p in paginator.page_range %}
+                <li class="page-num">
+                    <a href="?page{{ p }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

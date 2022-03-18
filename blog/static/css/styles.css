@@ -429,13 +429,13 @@ text-align: center;
 }
 
 
-.twitter {
+.twitter{
   width: 85%;
   float: right;
   height:  100%;
   margin-bottom:70px;
 
-
+}
 
 .post_img{
     height: 200px;
@@ -443,3 +443,44 @@ text-align: center;
 }
 
 
+
+.list-pages {
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.list-pages ul {
+	list-style: none;
+}
+.list-pages ul li {
+	display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.list-pages a {
+	color: white;
+	font-size: 24px;
+	text-decoration: none;
+	 margin-top: auto;
+    margin-bottom: auto;
+    vertical-align: center;
+
+}
+.list-pages .page-num, .page-num-selected {
+	display: inline-block;
+	width: 60px;
+	height: 44px;
+	border: 1px solid #d0d0d0;
+	border-radius: 30px;
+}
+.list-pages .page-num:hover {
+	box-shadow: 3px 3px 1px blue;
+}
+.list-pages .page-num-selected {
+	border: none;
+	color: white;
+	font-size: 20px;
+}
+.list-pages .page-num-selected:hover {
+	box-shadow: none;
+}

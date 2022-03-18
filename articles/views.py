@@ -23,13 +23,18 @@ class PostList(ListView):
         return context
 
 
-class PostCat(View):
+class PostCat(ListView):
     model = Post
     template_name = 'articles/article_category.html'
+    context_object_name = 'posts'
 
-    def get(self, request, cat_id):
-        posts = Post.objects.filter(published_date__lte=timezone.now()).filter(cat=cat_id).order_by('-published_date')
-        return render(request, self.template_name, {'cat_selected': cat_id, 'posts': posts})
+    def get_queryset(self):
+        return Post.objects.filter(cat=self.kwargs['cat_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cat_selected'] = self.kwargs['cat_id']
+        return context
 
 
 def post_detail(request, pk):

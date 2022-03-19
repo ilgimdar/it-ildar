@@ -107,3 +107,7 @@ def post_delete(request, pk):
     post = Post.objects.get(pk=pk)
     post.delete()
     return redirect('post_list')
+
+
+def login(request):
+    return HttpResponse('login')

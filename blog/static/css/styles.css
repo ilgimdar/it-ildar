@@ -454,34 +454,36 @@ text-align: center;
 	list-style: none;
 }
 .list-pages ul li {
+
 	display: inline-block;
     margin-left: 10px;
     margin-right: 10px;
+    background-color: black;
 }
 .list-pages a {
+    display: block;
 	color: white;
-	font-size: 24px;
+	font-size: 20px;
 	text-decoration: none;
 	 margin-top: auto;
     margin-bottom: auto;
-    vertical-align: center;
 
 }
-.list-pages .page-num, .page-num-selected {
+.list-pages .page-num {
 	display: inline-block;
 	width: 60px;
 	height: 44px;
-	border: 1px solid #d0d0d0;
+	border: 2px solid #04db9b;
 	border-radius: 30px;
 }
 .list-pages .page-num:hover {
-	box-shadow: 3px 3px 1px blue;
+	box-shadow: 0px 0px 2px 2px #04db9b;
 }
 .list-pages .page-num-selected {
-	border: none;
+    border: 5px solid #04db9b;
 	color: white;
-	font-size: 20px;
+	font-size: 30px;
 }
 .list-pages .page-num-selected:hover {
-	box-shadow: none;
+	box-shadow: #04db9b;
 }

@@ -15,15 +15,14 @@
 <div class="wrapper">
     <div id="header">
         <div class="first header-part">
-            <h2>Ильдар Гимадеев 😀</h2>
-            <h3>18 лет, Python backend разработчик 😎</h3>
+            <h2>@ildargimadeev 😀</h2>
+            <h3>19 лет, Python backend разработчик 😎</h3>
         </div>
         <div class="m-img header-part">
             <img src="{% static 'images/one.jpg' %}">
         </div>
         <div class="second header-part">
-            <p class="nomer">teleboting@yandex.ru</p>
-            <p class="nomer">@ildargimadeev </p>
+            <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
         </div>
     </div>
     <div id="sidebar">

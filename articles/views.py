@@ -16,7 +16,7 @@ class PostList(ListView):
     model = Post
     template_name = 'articles/articles.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,16 +24,18 @@ class PostList(ListView):
         return context
 
     def get_queryset(self):
-        return Post.objects.all()
+        return Post.objects.order_by('-published_date')
 
 
 class PostCat(ListView):
+    paginate_by = 3
+    paginate_orphans = 1
     model = Post
     template_name = 'articles/article_category.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.filter(cat=self.kwargs['cat_id'])
+        return Post.objects.filter(cat=self.kwargs['cat_id']).order_by('-published_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

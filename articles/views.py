@@ -16,12 +16,15 @@ class PostList(ListView):
     model = Post
     template_name = 'articles/articles.html'
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cat_selected'] = 0
         return context
+
+    def get_queryset(self):
+        return Post.objects.all()
 
 
 class PostCat(ListView):

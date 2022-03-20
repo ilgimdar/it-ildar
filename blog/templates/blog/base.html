@@ -22,7 +22,11 @@
             <img src="{% static 'images/one.jpg' %}">
         </div>
         <div class="second header-part">
-            <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
+            {% if not user.is_authenticated %}
+            <div class="register">
+                <a class="register" href="{% url 'register' %}">Регистрация</a> | <a class="register" href="{% url 'login' %}">Войти</a>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div id="sidebar">

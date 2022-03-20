@@ -403,7 +403,7 @@ text-align: center;
     text-align: center;
 }
 .post_full_img img{
-    width: 60%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
@@ -504,4 +504,14 @@ text-align: center;
 }
 .list-pages .page-num-selected:hover {
 	box-shadow: #04db9b;
+}
+
+.register{
+    color: white;
+    font-size: 20px;
+}
+
+.register :hover{
+    color: red;
+    font-size: 20px;
 }

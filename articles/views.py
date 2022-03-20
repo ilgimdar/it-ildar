@@ -1,18 +1,16 @@
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.views import View
-from django.views.generic import ListView
-
-from blog.models import Post
-from django.utils import timezone
-from .forms import PostForm
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+from django.views.generic import ListView
+
 from blog.models import Category
+from blog.models import Post
+from .forms import PostForm
+from .utils import *
 
 
-class PostList(ListView):
+class PostList(DataMixin, ListView):
     model = Post
     template_name = 'articles/articles.html'
     context_object_name = 'posts'
@@ -20,14 +18,14 @@ class PostList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cat_selected'] = 0
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
         return Post.objects.order_by('-published_date')
 
 
-class PostCat(ListView):
+class PostCat(DataMixin, ListView):
     paginate_by = 3
     paginate_orphans = 1
     model = Post
@@ -39,8 +37,10 @@ class PostCat(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cat_selected'] = self.kwargs['cat_id']
-        return context
+        c_def = self.get_user_context(cat_selected=self.kwargs['cat_id'])
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 
 
 def post_detail(request, pk):

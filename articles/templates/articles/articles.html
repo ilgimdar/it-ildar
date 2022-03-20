@@ -7,9 +7,8 @@
     <nav class="nav">
         <ul>
             <li class="active current-cat"><a href="{% url 'post_list' %}">Все категории</a></li>
-            {% getcats as cats %}
             {% for c in cats %}
-                <li><a href="articles/category/{{ c.pk }}/">{{ c.name }}</a></li>
+                <li><a href="/articles/category/{{ c.pk }}/">{{ c.name }}</a></li>
             {% endfor %}
         </ul>
     </nav>

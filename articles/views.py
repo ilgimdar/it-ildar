@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.views.generic import ListView
+from django.views import View
+from django.views.generic import ListView, TemplateView, FormView
 
 from blog.models import Category
 from blog.models import Post
@@ -41,20 +42,23 @@ class PostCat(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
+class PostDetail(View):
+    template_name = 'articles/post_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == "POST":
+            if request.POST['post_delete'] is not None:
+                return redirect('post_delete', pk=self.kwargs['pk'])
+        post = get_object_or_404(Post, pk=self.kwargs['pk'])
+        return render(request, self.template_name, {'post': post})
 
 
-def post_detail(request, pk):
-    if request.method == "POST":
-        if request.POST['post_delete'] is not None:
-            return redirect('post_delete', pk=pk)
+class PostNew(FormView):
+    form_class = PostForm
+    template_name = 'articles/post_new.html'
 
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'articles/post_detail.html', {'post': post})
-
-
-def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             selected_category = request.POST['cat']
             cat = Category.objects.get(name=selected_category)
@@ -70,9 +74,11 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
         else:
             print("NOT VALID")
-    else:
+        return render(request, self.template_name, {'form': form})
+
+    def get(self, request, *args, **kwargs):
         form = PostForm()
-    return render(request, 'articles/post_new.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 def post_edit(request, pk):

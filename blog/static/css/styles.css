@@ -519,3 +519,12 @@ text-align: center;
     color: red;
     font-size: 20px;
 }
+
+.registration-form{
+    background-color: white;
+    color: white;
+    padding: 30px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}

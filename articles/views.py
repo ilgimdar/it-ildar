@@ -23,7 +23,7 @@ class PostList(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Post.objects.order_by('-published_date')
+        return Post.objects.all()
 
 
 class PostCat(DataMixin, ListView):
@@ -81,10 +81,14 @@ class PostNew(FormView):
         return render(request, self.template_name, {'form': form})
 
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+class PostEdit(FormView):
+    form_class = PostForm
+    template_name = 'articles/post_edit.html'
+    post_redirect_name = 'post_detail'
+
+    def post(self, request, *args, **kwargs):
+        post = Post.objects.get(pk=self.kwargs['pk'])
+        form = self.form_class(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -94,19 +98,25 @@ def post_edit(request, pk):
             if request.FILES and request.FILES['post_image'] is not None:
                 post.photo = request.FILES['post_image']
             post.save()
-            return redirect('post_detail', pk=post.pk)
-    post_obj = Post.objects.get(pk=pk)
-    title = post_obj.title
-    text = post_obj.text
-    photo = post_obj.photo
-    cat = post_obj.cat
-    context = {
-        'title': title,
-        'text': text,
-        'photo': photo,
-        'cat': cat
-    }
-    return render(request, 'articles/post_edit.html', context=context)
+            return redirect(self.post_redirect_name, pk=post.pk)
+        return render(request, self.template_name, context=self.get_context_data(pk=self.kwargs['pk']))
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, context=self.get_context_data(pk=self.kwargs['pk']))
+
+    def get_context_data(self, pk, **kwargs):
+        post_obj = Post.objects.get(pk=pk)
+        title = post_obj.title
+        text = post_obj.text
+        photo = post_obj.photo
+        cat = post_obj.cat
+        context = {
+            'title': title,
+            'text': text,
+            'photo': photo,
+            'cat': cat
+        }
+        return context
 
 
 def post_delete(request, pk):

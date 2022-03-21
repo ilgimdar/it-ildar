@@ -528,3 +528,11 @@ text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
+
+.form-label{
+    margin-right: 10px;
+}
+
+.form-error{
+    color:red;
+}

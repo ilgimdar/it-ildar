@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -19,3 +20,8 @@ class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
     template_name = 'mysite/register.html'
     success_url = reverse_lazy('login')
+
+
+class LoginUser(DataMixin, LoginView):
+    form_class = AuthenticationForm
+    template_name = 'mysite/login.html'

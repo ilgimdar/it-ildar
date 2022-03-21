@@ -6,7 +6,10 @@
         <p>Регистрация</p>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for f in form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
             <button class="btn btn-sm btn-success" type="submit">Зарегистрироваться</button>
         </form>
     </div>

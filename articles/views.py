@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
@@ -53,9 +54,10 @@ class PostDetail(View):
         return render(request, self.template_name, {'post': post})
 
 
-class PostNew(FormView):
+class PostNew(LoginRequiredMixin, FormView):
     form_class = PostForm
     template_name = 'articles/post_new.html'
+    login_url = '/admin/'
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -81,14 +83,15 @@ class PostNew(FormView):
         return render(request, self.template_name, {'form': form})
 
 
-class PostEdit(FormView):
+class PostEdit(LoginRequiredMixin, FormView):
     form_class = PostForm
     template_name = 'articles/post_edit.html'
     post_redirect_name = 'post_detail'
+    login_url = '/admin/'
 
     def post(self, request, *args, **kwargs):
-        post = Post.objects.get(pk=self.kwargs['pk'])
-        form = self.form_class(request.POST, instance=post)
+        post_found = Post.objects.get(pk=self.kwargs['pk'])
+        form = self.form_class(request.POST, instance=post_found)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user

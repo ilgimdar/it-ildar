@@ -25,3 +25,6 @@ class RegisterUser(DataMixin, CreateView):
 class LoginUser(DataMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'mysite/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')

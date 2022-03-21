@@ -26,6 +26,10 @@
             <div class="register">
                 <a class="register" href="{% url 'register' %}">Регистрация</a> | <a class="register" href="{% url 'login' %}">Войти</a>
             </div>
+            {% else %}
+            <div class="register">
+                <p class="register">{{ user.get_username }}</p>
+            </div>
             {% endif %}
         </div>
     </div>

@@ -4,13 +4,14 @@ from django.urls import path, include
 from articles import views
 
 from . import settings
-from .views import page_not_found, RegisterUser
+from .views import page_not_found, RegisterUser, LoginUser
+
 urlpatterns = [
-    path('', include('blog.urls')),
+    path('', include('blog.urls'), name='home'),
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
-    path('login/', RegisterUser.as_view(), name='login'),
-    path('register/', views.login, name='register'),
+    path('login/', LoginUser.as_view(), name='login'),
+    path('register/', RegisterUser.as_view(), name='register'),
 
 ]
 

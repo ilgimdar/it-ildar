@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <div class="registration-form">
+        <p>Вход в личный кабинет</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-sm btn-success" type="submit">Логин</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
